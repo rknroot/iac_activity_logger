@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include iac_activity_logger *.css
+recursive-include iac_activity_logger *.csv
+recursive-include iac_activity_logger *.html
+recursive-include iac_activity_logger *.ico
+recursive-include iac_activity_logger *.js
+recursive-include iac_activity_logger *.json
+recursive-include iac_activity_logger *.md
+recursive-include iac_activity_logger *.png
+recursive-include iac_activity_logger *.py
+recursive-include iac_activity_logger *.svg
+recursive-include iac_activity_logger *.txt
+recursive-exclude iac_activity_logger *.pyc
