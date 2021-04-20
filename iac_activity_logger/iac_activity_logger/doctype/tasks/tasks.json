@@ -90,8 +90,7 @@
    "default": "Now",
    "fieldname": "time",
    "fieldtype": "Time",
-   "label": "Time",
-   "read_only": 1
+   "label": "Time"
   },
   {
    "default": "Medium",
@@ -327,7 +326,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-20 10:38:00.033440",
+ "modified": "2021-04-20 10:55:33.469086",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
@@ -342,6 +341,7 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
    "submit": 1,
    "write": 1
@@ -379,6 +379,28 @@
    "read": 1,
    "report": 1,
    "role": "Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Supervisor",
    "share": 1,
    "write": 1
   }
