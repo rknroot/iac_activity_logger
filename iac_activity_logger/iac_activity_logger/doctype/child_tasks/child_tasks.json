@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "creation": "2021-04-20 10:41:38.358009",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "status",
+  "column_break_3",
+  "task_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Title",
+   "options": "Tasks"
+  },
+  {
+   "fetch_from": "title.status",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "New\nIn Progress\nClosed\nOn Hold"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "title.task_date",
+   "fieldname": "task_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2021-04-20 10:44:52.254284",
+ "modified_by": "Administrator",
+ "module": "IAC Activity Logger",
+ "name": "Child Tasks",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

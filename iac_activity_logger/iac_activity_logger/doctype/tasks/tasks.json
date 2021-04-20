@@ -1,23 +1,333 @@
 {
  "actions": [],
- "autoname": "IACT./.YY./.####",
- "creation": "2021-04-19 21:18:05.545648",
+ "creation": "2021-04-20 10:17:05.205313",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "title"
+  "status",
+  "column_break_2",
+  "section_break_4",
+  "task_title",
+  "task_date",
+  "end_date",
+  "column_break_7",
+  "assigned_to",
+  "time",
+  "priority",
+  "section_break_10",
+  "description",
+  "attachment",
+  "res",
+  "create_recurrence_task",
+  "clarification",
+  "mail_sent",
+  "effort_log_section",
+  "log_table",
+  "section_break_17",
+  "section_break_14",
+  "repeat_on",
+  "repeat_till",
+  "create_tasks",
+  "column_break_17",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+  "clarification_details_section",
+  "clarification_status",
+  "column_break_10",
+  "clarification_from",
+  "clarification_to",
+  "section_break_35",
+  "parent_tasks",
+  "section_break_37",
+  "child_tasks",
+  "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "title",
+   "default": "New",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "New\nIn Progress\nClosed\nRejected\nOn Hold\nReopen",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Tasks Details"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Assigned To",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "default": "Now",
+   "fieldname": "time",
+   "fieldtype": "Time",
+   "label": "Time",
+   "read_only": 1
+  },
+  {
+   "default": "Medium",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Priority",
+   "options": "\nHigh\nMedium\nLow"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "read_only_depends_on": "eval:doc.status != \"New\""
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "fieldname": "res",
+   "fieldtype": "Small Text",
+   "label": "Resolution Details",
+   "read_only_depends_on": "eval:doc.status == \"New\""
+  },
+  {
+   "default": "0",
+   "fieldname": "clarification",
+   "fieldtype": "Check",
+   "label": "Request Clarification"
+  },
+  {
+   "default": "0",
+   "fieldname": "mail_sent",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Mail sent"
+  },
+  {
+   "fieldname": "effort_log_section",
+   "fieldtype": "Section Break",
+   "label": "Effort Log"
+  },
+  {
+   "fieldname": "log_table",
+   "fieldtype": "Table",
+   "options": "Task Effort Log"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "create_recurrence_ticket",
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "create_recurrence_ticket",
+   "fieldname": "repeat_on",
+   "fieldtype": "Select",
+   "label": "Repeat On",
+   "mandatory_depends_on": "create_recurrence_ticket",
+   "options": "\nDaily\nWeekly\nMonthly\nYearly"
+  },
+  {
+   "description": "Leave empty to repeat always",
+   "fieldname": "repeat_till",
+   "fieldtype": "Date",
+   "label": "Repeat Till",
+   "mandatory_depends_on": "create_recurrence_ticket"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "fieldname": "monday",
+   "fieldtype": "Check",
+   "label": "Monday"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "fieldname": "tuesday",
+   "fieldtype": "Check",
+   "label": "Tuesday"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "fieldname": "wednesday",
+   "fieldtype": "Check",
+   "label": "Wednesday"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "fieldname": "thursday",
+   "fieldtype": "Check",
+   "label": "Thursday"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "fieldname": "friday",
+   "fieldtype": "Check",
+   "label": "Friday"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "fieldname": "saturday",
+   "fieldtype": "Check",
+   "label": "Saturday"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "fieldname": "sunday",
+   "fieldtype": "Check",
+   "label": "Sunday"
+  },
+  {
+   "depends_on": "clarification",
+   "fieldname": "clarification_details_section",
+   "fieldtype": "Section Break",
+   "label": "Clarification Details"
+  },
+  {
+   "fieldname": "clarification_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Clarification Status",
+   "mandatory_depends_on": "clarification",
+   "options": "\nRaised\nRespond\nIn progress\nClosed"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "clarification_from",
+   "fieldtype": "Link",
+   "label": "Clarification Needed From",
+   "mandatory_depends_on": "clarification",
+   "options": "User"
+  },
+  {
+   "fieldname": "clarification_to",
+   "fieldtype": "Link",
+   "label": "Clarification Needed By",
+   "mandatory_depends_on": "clarification",
+   "options": "User"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Tasks",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_35",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "create_recurrence_ticket",
+   "fieldname": "section_break_37",
+   "fieldtype": "Section Break",
+   "label": "Recurrent Tasks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Tasks",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "task_title",
    "fieldtype": "Data",
-   "label": "Title"
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "task_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "create_recurrence_task",
+   "fieldtype": "Check",
+   "label": "Create Recurrence Tasks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "create_tasks",
+   "fieldtype": "Button",
+   "label": "Create Tasks"
+  },
+  {
+   "depends_on": "parent_ticket",
+   "fieldname": "parent_tasks",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Parent Tasks",
+   "options": "Tasks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "child_tasks",
+   "fieldtype": "Table",
+   "options": "Child Tasks"
   }
  ],
- "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2021-04-19 21:18:05.545648",
+ "modified": "2021-04-20 10:38:00.033440",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
@@ -33,10 +343,47 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Cloud Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Users",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Admin",
+   "share": 1,
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "task_date",
  "sort_order": "DESC",
- "track_changes": 1
+ "title_field": "task_title"
 }
