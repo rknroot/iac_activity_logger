@@ -28,7 +28,9 @@
   "section_break_14",
   "repeat_on",
   "repeat_till",
+  "reschedule",
   "create_tasks",
+  "reschedule_tasks",
   "column_break_17",
   "monday",
   "tuesday",
@@ -43,10 +45,10 @@
   "clarification_from",
   "clarification_to",
   "section_break_35",
-  "parent_tasks",
   "section_break_37",
   "child_tasks",
-  "amended_from"
+  "amended_from",
+  "parent_tasks"
  ],
  "fields": [
   {
@@ -150,16 +152,16 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "create_recurrence_ticket",
+   "depends_on": "create_recurrence_task",
    "fieldname": "section_break_14",
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "create_recurrence_ticket",
+   "depends_on": "create_recurrence_task",
    "fieldname": "repeat_on",
    "fieldtype": "Select",
    "label": "Repeat On",
-   "mandatory_depends_on": "create_recurrence_ticket",
+   "mandatory_depends_on": "create_recurrence_task",
    "options": "\nDaily\nWeekly\nMonthly\nYearly"
   },
   {
@@ -175,49 +177,49 @@
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "depends_on": "eval:doc.create_recurrence_task && doc.repeat_on===\"Weekly\"",
    "fieldname": "monday",
    "fieldtype": "Check",
    "label": "Monday"
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "depends_on": "eval:doc.create_recurrence_task && doc.repeat_on===\"Weekly\"",
    "fieldname": "tuesday",
    "fieldtype": "Check",
    "label": "Tuesday"
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "depends_on": "eval:doc.create_recurrence_task && doc.repeat_on===\"Weekly\"",
    "fieldname": "wednesday",
    "fieldtype": "Check",
    "label": "Wednesday"
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "depends_on": "eval:doc.create_recurrence_task && doc.repeat_on===\"Weekly\"",
    "fieldname": "thursday",
    "fieldtype": "Check",
    "label": "Thursday"
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "depends_on": "eval:doc.create_recurrence_task && doc.repeat_on===\"Weekly\"",
    "fieldname": "friday",
    "fieldtype": "Check",
    "label": "Friday"
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "depends_on": "eval:doc.create_recurrence_task && doc.repeat_on===\"Weekly\"",
    "fieldname": "saturday",
    "fieldtype": "Check",
    "label": "Saturday"
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.create_recurrence_ticket && doc.repeat_on===\"Weekly\"",
+   "depends_on": "eval:doc.create_recurrence_task && doc.repeat_on===\"Weekly\"",
    "fieldname": "sunday",
    "fieldtype": "Check",
    "label": "Sunday"
@@ -269,7 +271,7 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "create_recurrence_ticket",
+   "depends_on": "create_recurrence_task",
    "fieldname": "section_break_37",
    "fieldtype": "Section Break",
    "label": "Recurrent Tasks"
@@ -304,12 +306,13 @@
    "permlevel": 1
   },
   {
+   "depends_on": "eval:doc.reschedule == 0",
    "fieldname": "create_tasks",
    "fieldtype": "Button",
    "label": "Create Tasks"
   },
   {
-   "depends_on": "parent_ticket",
+   "depends_on": "parent_tasks",
    "fieldname": "parent_tasks",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -322,11 +325,23 @@
    "fieldname": "child_tasks",
    "fieldtype": "Table",
    "options": "Child Tasks"
+  },
+  {
+   "default": "0",
+   "fieldname": "reschedule",
+   "fieldtype": "Check",
+   "label": "Reschedule"
+  },
+  {
+   "depends_on": "reschedule",
+   "fieldname": "reschedule_tasks",
+   "fieldtype": "Button",
+   "label": "Reschedule Tasks"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-20 10:55:33.469086",
+ "modified": "2021-04-21 11:50:58.959621",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
