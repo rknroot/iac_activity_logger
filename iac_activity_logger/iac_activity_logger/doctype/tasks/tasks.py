@@ -24,13 +24,14 @@ weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", 
 class Tasks(Document):
 	def onload(self):
 		if self.create_recurrence_task:
-			parent_tasks = frappe.db.get_all("Tasks",filters={"parent_tasks":self.name},fields=('name','task_date','status'))
+			parent_tasks = frappe.db.get_all("Tasks",filters={"parent_tasks":self.name},fields=('name','task_date','status', 'repeat_on'))
 			for i in parent_tasks:
 				if i.name not in [j.title for j in self.get("child_tasks")]:
 					child = self.append('child_tasks',{})
 					child.title = i.name
 					child.status = i.status
 					child.task_date = i.task_date
+					child.repeat_on = i.repeat_on
 
 	def autoname(self):
 		task_series = frappe.db.get_single_value("Tasks Settings","tasks_series")
@@ -53,7 +54,7 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 	events = frappe.db.sql("""
 		SELECT `tabTasks`.name,
 				`tabTasks`.task_date,
-                                `tabTasks`.task_title,
+                `tabTasks`.task_title,
 				`tabTasks`.priority,
 				`tabTasks`.description,
 				`tabTasks`.owner,
@@ -80,6 +81,7 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 				)
 				AND (
 					date(`tabTasks`.task_date) <= date(%(start)s)
+					OR date(`tabTasks`.task_date) = date(%(start)s)
 					AND `tabTasks`.create_recurrence_task=1
 					AND coalesce(`tabTasks`.repeat_till, '3000-01-01') > date(%(start)s)
 					AND `tabTasks`.name = (%(user)s)
@@ -103,6 +105,7 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 	remove_events = []
 
 	def add_event(e, date):
+		#frappe.msgprint("Add"+(str(e))+ "dat" + str(date))
 		new_event = e.copy()
 		enddate = add_days(date,int(date_diff(e.task_date.split(" ")[0], e.task_date.split(" ")[0]))) \
 			if (e.task_date and e.task_date) else date
@@ -150,7 +153,6 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 					if getdate(date) >= getdate(start) and getdate(date) <= getdate(end) \
 						and getdate(date) <= getdate(repeat) and getdate(date) >= getdate(event_start):
 						add_event(e, date)
-
 					date = add_months(start_from, i+1)
 				remove_events.append(e)
 
@@ -161,7 +163,6 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 						and getdate(date) <= getdate(repeat) and getdate(date) >= getdate(event_start) \
 						and e[weekdays[getdate(date).weekday()]]:
 						add_event(e, date)
-
 				remove_events.append(e)
 
 			if e.repeat_on == "Daily":
@@ -173,6 +174,12 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 	for e in remove_events:
 		events.remove(e)
 
+	get_date_list = frappe.db.sql(""" select task_date from `tabTasks` where parent_tasks = %s""", e.name, as_dict = 1)
+	for j in get_date_list:
+		for k in add_events:
+			if j.task_date == getdate(k.task_date):
+				add_events.remove(k)
+
 	events = events + add_events
 	for e in events:
 		task_schedule = frappe.new_doc("Tasks")
@@ -181,47 +188,61 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 		task_schedule.description = e.description
 		task_schedule.task_date = e.task_date
 		task_schedule.parent_tasks = e.name
+		task_schedule.repeat_on = e.repeat_on
 		task_schedule.flags.ignore_permissions = 1
 		task_schedule.insert()
 
 	#return events
 
 @frappe.whitelist()
-def delete_tasks(docid):
+def delete_tasks(start, end, user=None, for_reminder=False, filters=None):
 		"""Delete all schedule within the Date range and specified filters"""
-		self = frappe.get_doc("Tasks", docid)
+		self = frappe.get_doc("Tasks", user)
 		rescheduled = []
 		reschedule_errors = []
 		schedules = frappe.get_list("Tasks",
-			fields=["name", "task_date"],
+			fields=["name", "task_date", "repeat_on"],
 			filters=[
 				["task_title", "=", self.task_title],
-				["status", "=", self.status],
-				["task_date", ">=", self.task_date],
+				["status", "=", "New"],
+				["task_date", ">=", self.repeat_till]
+			]
+		)
+		if schedules:
+			for d in schedules:
+				frappe.db.sql("""delete from `tabChild Tasks` where title = %s and task_date = %s""", (d.name, d.task_date))
+				frappe.db.sql("""delete from `tabTasks` where name = %s""", (d.name))
+		else:
+			get_tasks(start, end, user=None, for_reminder=False, filters=None)
+			del_duplicate(start)
+
+@frappe.whitelist()
+def delete_tasks_repeat(start, end, user=None, for_reminder=False, filters=None):
+		"""Delete all schedule within the Date range and specified filters"""
+		self = frappe.get_doc("Tasks", user)
+		rescheduled = []
+		reschedule_errors = []
+		schedules = frappe.get_list("Tasks",
+			fields=["name", "task_date", "repeat_on"],
+			filters=[
+				["task_title", "=", self.task_title],
+				["status", "=", "New"],
+				["create_recurrence_task", "=", "0"],
 				["task_date", "<=", self.repeat_till]
 			]
 		)
-		#frappe.msgprint("Schedule" + str(schedules))
-		for d in schedules:
-			frappe.msgprint("d"+str(d))
-			try:
-				frappe.msgprint("try")
-				#frappe.msgprint("cal"+str(calendar.day_name[getdate(d.task_date).weekday()]))
-				if self.tuesday == calendar.day_name[getdate(d.task_date).weekday()]:
-					frappe.msgprint("if")
-					frappe.delete_doc("Tasks", d.name)
-					rescheduled.append(d.name)
-			except:
-				frappe.msgprint("except")
-				reschedule_errors.append(d.name)
-		return rescheduled, reschedule_errors
-
+		if schedules:
+			for d in schedules:
+				frappe.db.sql("""delete from `tabChild Tasks` where parent = %s and task_date = %s """, (d.name, d.task_date))
+				frappe.db.sql("""delete from `tabTasks` where name = %s""", (d.name))
+		else:
+			get_tasks(start, end, user=None, for_reminder=False, filters=None)
+			del_duplicate(start)
 
 @frappe.whitelist()
 def del_duplicate(start):
 	get_tasks_duplicate = frappe.db.sql("""select name, task_date, create_recurrence_task from `tabTasks` where task_date = %s""",(start),as_dict=1)
 	for i in get_tasks_duplicate:
-
 		if i.create_recurrence_task == 0:
 			frappe.db.sql("""delete from `tabTasks` where name = %s""",(i.name))
 

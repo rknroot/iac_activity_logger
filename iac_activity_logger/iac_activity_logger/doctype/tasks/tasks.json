@@ -24,7 +24,6 @@
   "mail_sent",
   "effort_log_section",
   "log_table",
-  "section_break_17",
   "section_break_14",
   "repeat_on",
   "repeat_till",
@@ -146,10 +145,6 @@
    "fieldname": "log_table",
    "fieldtype": "Table",
    "options": "Task Effort Log"
-  },
-  {
-   "fieldname": "section_break_17",
-   "fieldtype": "Section Break"
   },
   {
    "depends_on": "create_recurrence_task",
@@ -341,7 +336,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-21 11:50:58.959621",
+ "modified": "2021-04-22 11:27:37.942360",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
