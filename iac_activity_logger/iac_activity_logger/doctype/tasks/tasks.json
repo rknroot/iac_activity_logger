@@ -9,6 +9,7 @@
   "column_break_2",
   "section_break_4",
   "task_title",
+  "farms",
   "task_date",
   "end_date",
   "column_break_7",
@@ -332,11 +333,17 @@
    "fieldname": "reschedule_tasks",
    "fieldtype": "Button",
    "label": "Reschedule Tasks"
+  },
+  {
+   "fieldname": "farms",
+   "fieldtype": "Link",
+   "label": "Farms",
+   "options": "Farms"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-22 11:27:37.942360",
+ "modified": "2021-04-26 12:27:14.227658",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
