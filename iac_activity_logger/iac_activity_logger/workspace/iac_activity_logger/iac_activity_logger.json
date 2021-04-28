@@ -13,7 +13,7 @@
  "is_standard": 1,
  "label": "IAC Activity Logger",
  "links": [],
- "modified": "2021-04-20 10:48:58.915793",
+ "modified": "2021-04-27 11:14:58.570099",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "IAC Activity Logger",
@@ -21,6 +21,12 @@
  "pin_to_bottom": 0,
  "pin_to_top": 0,
  "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "Farms",
+   "link_to": "Farms",
+   "type": "DocType"
+  },
   {
    "doc_view": "List",
    "label": "Tasks",
