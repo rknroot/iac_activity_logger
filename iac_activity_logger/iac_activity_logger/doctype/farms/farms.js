@@ -2,11 +2,16 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Farms', {
-	setup: function(frm) {
-		frm.set_query("assigned_to", function() {
-			return {
-				filters: {'role_profile_name': "supervisor"}
-			}
-		});
-	}
+        setup: function(frm) {
+                frm.set_query("supervisor", function() {
+                        return {
+                                filters: {'role_profile_name': "supervisor"}
+                        }
+                });
+                frm.set_query("admin", function() {
+                        return {
+                                filters: {'role_profile_name': "admin"}
+                        }
+                });
+        }
 });
