@@ -45,19 +45,22 @@
   {
    "fieldname": "admin",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Assign To Admin",
-   "options": "User"
+   "options": "User",
+   "permlevel": 1
   },
   {
    "fieldname": "supervisor",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Assign To Supervisor",
    "options": "User"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-04-29 23:19:24.048759",
+ "modified": "2021-05-03 11:45:10.798124",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Farms",
@@ -74,9 +77,41 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farm Supervisor",
+   "share": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farm Admin",
+   "share": 1,
+   "write": 1
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "title_field": "project_name",
  "track_changes": 1
 }

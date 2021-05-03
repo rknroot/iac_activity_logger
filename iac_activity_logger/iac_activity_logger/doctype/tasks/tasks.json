@@ -47,8 +47,8 @@
   "section_break_35",
   "section_break_37",
   "child_tasks",
-  "amended_from",
-  "parent_tasks"
+  "parent_tasks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -343,7 +343,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-26 12:27:14.227658",
+ "modified": "2021-05-03 11:42:42.886297",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
@@ -365,37 +365,12 @@
   },
   {
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Cloud Admin",
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Users",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Admin",
    "share": 1,
    "write": 1
   },
@@ -417,7 +392,19 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Supervisor",
+   "role": "Farm Supervisor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farm Admin",
    "share": 1,
    "write": 1
   }

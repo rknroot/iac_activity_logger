@@ -5,12 +5,12 @@ frappe.ui.form.on('Farms', {
         setup: function(frm) {
                 frm.set_query("supervisor", function() {
                         return {
-                                filters: {'role_profile_name': "supervisor"}
+                                filters: {'role_profile_name': "farm supervisor"}
                         }
                 });
                 frm.set_query("admin", function() {
                         return {
-                                filters: {'role_profile_name': "admin"}
+                                filters: {'role_profile_name': "farm admin"}
                         }
                 });
         }

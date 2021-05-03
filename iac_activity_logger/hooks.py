@@ -143,3 +143,4 @@ app_license = "MIT"
 #
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
 
+fixtures = ["Workspace", "System Settings", "Role", "Module Profile", "Role Profile", "Workflow", "Workflow State", "Workflow Action Master"]
