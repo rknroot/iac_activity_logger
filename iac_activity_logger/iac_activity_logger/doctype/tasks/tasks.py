@@ -55,6 +55,8 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 		SELECT `tabTasks`.name,
 				`tabTasks`.task_date,
                 `tabTasks`.task_title,
+				`tabTasks`.farms,
+				`tabTasks`.time,
 				`tabTasks`.priority,
 				`tabTasks`.description,
 				`tabTasks`.owner,
@@ -184,6 +186,8 @@ def get_tasks(start, end, user=None, for_reminder=False, filters=None):
 	for e in events:
 		task_schedule = frappe.new_doc("Tasks")
 		task_schedule.task_title = e.task_title
+		task_schedule.farms = e.farms
+		task_schedule.time = e.time
 		task_schedule.priority = e.priority
 		task_schedule.description = e.description
 		task_schedule.task_date = e.task_date
@@ -266,7 +270,6 @@ def get_events(start, end, filters=None):
 			"start": start,
 			"end": end
 			}, as_dict=True, update={"allDay": 0})
-
 	return data
 
 

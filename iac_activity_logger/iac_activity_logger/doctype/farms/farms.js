@@ -10,7 +10,7 @@ frappe.ui.form.on('Farms', {
                 });
                 frm.set_query("admin", function() {
                         return {
-                                filters: {'role_profile_name': "farm admin"}
+                                filters: {'role_profile_name': ["in", ["farm admin", "farm super admin"]]}
                         }
                 });
         }

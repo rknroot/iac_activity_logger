@@ -66,7 +66,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-05-03 13:44:38.653966",
+ "modified": "2021-05-04 12:46:56.581892",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Farms",
@@ -112,6 +112,30 @@
    "read": 1,
    "report": 1,
    "role": "Farm Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farm Super User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Farm Super User",
    "share": 1,
    "write": 1
   }
