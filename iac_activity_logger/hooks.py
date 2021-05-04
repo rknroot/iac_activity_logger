@@ -73,6 +73,7 @@ app_license = "MIT"
 
 permission_query_conditions = {
     "Tasks": "iac_activity_logger.iac_activity_logger.doctype.tasks.tasks.get_permissions",
+    "Farms": "iac_activity_logger.iac_activity_logger.doctype.farms.farms.get_permissions",
 }
 #
 # has_permission = {
