@@ -112,5 +112,29 @@
     "role": "Farm Supervisor"
    }
   ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2021-05-04 12:49:06.793141",
+  "name": "farm super admin",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "farm super admin",
+  "roles": [
+   {
+    "parent": "farm super admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Farm Super Admin"
+   },
+   {
+    "parent": "farm super admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "IAC Employees"
+   }
+  ]
  }
 ]
