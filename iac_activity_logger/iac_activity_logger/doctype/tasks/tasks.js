@@ -5,6 +5,13 @@ frappe.ui.form.on('Tasks', {
 	// refresh: function(frm) {
 
 	// }
+	setup: function(frm) {
+		frm.set_query("assigned_to", function() {
+				return {
+						filters: {'role_profile_name': "farm supervisor"}
+				}
+		});
+	},
 	refresh(frm)
 	{
 		$(cur_frm.fields_dict.create_tasks.input).addClass("btn-primary").css({'color':'white','font-weight': 'bold'});

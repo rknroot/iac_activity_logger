@@ -16,6 +16,7 @@
   "assigned_to",
   "time",
   "priority",
+  "color",
   "section_break_10",
   "description",
   "attachment",
@@ -339,11 +340,16 @@
    "fieldtype": "Link",
    "label": "Farms",
    "options": "Farms"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "Color"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-05-03 11:42:42.886297",
+ "modified": "2021-05-03 13:49:22.088737",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
@@ -411,5 +417,8 @@
  ],
  "sort_field": "task_date",
  "sort_order": "DESC",
- "title_field": "task_title"
+ "title_field": "task_title",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }

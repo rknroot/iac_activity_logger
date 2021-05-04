@@ -270,27 +270,11 @@ def get_events(start, end, filters=None):
 	return data
 
 
-# @frappe.whitelist()
-# def get_permissions(user):
-# 	retval = ''
-# 	if "System Manager" in frappe.permissions.get_roles(frappe.session.user):
-# 		pass
-	
-# 	elif "Admin" in frappe.permissions.get_roles(frappe.session.user):
-# 		cat_list = frappe.db.sql("""select name from tabTasks Category""",as_dict = True)
-# 		for i in cat_list:
-# 			retval = """((`tabTasks`.category = '{i}' ) or (`tabTasks`.owner = '{user}' or 
-# 				`tabTasks`.modified_by = '{user}'))""".format(i = 'IT', user=frappe.session.user)
-	
-# 	elif "Cloud Admin" in frappe.permissions.get_roles(frappe.session.user):
-# 		cat_list = frappe.db.sql("""select name from tabTasks Category""",as_dict = True)
-# 		for i in cat_list:
-# 			retval = """((`tabTasks`.category = '{i}' ) or (`tabTasks`.owner = '{user}' or 
-# 				`tabTasks`.modified_by = '{user}'))""".format(i = 'Cloud', user=frappe.session.user)
-
-# 	elif "Users" in frappe.permissions.get_roles(frappe.session.user):
-# 		retval = """((`tabTasks`.owner = '{user}' or 
-# 				`tabTasks`.modified_by = '{user}'))""".format(user=frappe.session.user)
-
-# 	return retval
-
+@frappe.whitelist()
+def get_permissions(user):
+	retval = ''
+	if "System Manager" in frappe.permissions.get_roles(frappe.session.user):
+		pass
+	elif "Farm Supervisor" in frappe.permissions.get_roles(frappe.session.user):
+		retval = """((`tabTasks`.assigned_to = '{user}'))""".format(user=frappe.session.user)
+	return retval

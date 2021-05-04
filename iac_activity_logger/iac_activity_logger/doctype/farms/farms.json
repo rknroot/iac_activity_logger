@@ -8,6 +8,7 @@
  "field_order": [
   "naming_series",
   "project_name",
+  "color",
   "column_break_3",
   "admin",
   "supervisor",
@@ -56,11 +57,16 @@
    "in_list_view": 1,
    "label": "Assign To Supervisor",
    "options": "User"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "Color"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-05-03 11:45:10.798124",
+ "modified": "2021-05-03 13:44:38.653966",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Farms",
@@ -110,8 +116,11 @@
    "write": 1
   }
  ],
+ "show_preview_popup": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "title_field": "project_name",
- "track_changes": 1
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }
