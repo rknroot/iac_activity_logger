@@ -18,7 +18,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2021-05-04 12:45:22.026815",
+ "modified": "2021-05-04 14:40:55.365516",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks Settings",
@@ -40,7 +40,7 @@
    "email": 1,
    "print": 1,
    "read": 1,
-   "role": "Farm Super User",
+   "role": "Farm Super Admin",
    "share": 1,
    "write": 1
   }

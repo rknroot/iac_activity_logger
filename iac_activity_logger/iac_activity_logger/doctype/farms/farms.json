@@ -66,7 +66,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-05-04 12:46:56.581892",
+ "modified": "2021-05-04 14:40:43.790025",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Farms",
@@ -123,7 +123,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Farm Super User",
+   "role": "Farm Super Admin",
    "share": 1,
    "write": 1
   },
@@ -135,7 +135,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Farm Super User",
+   "role": "Farm Super Admin",
    "share": 1,
    "write": 1
   }

@@ -48,8 +48,7 @@
   "section_break_35",
   "section_break_37",
   "child_tasks",
-  "parent_tasks",
-  "amended_from"
+  "parent_tasks"
  ],
  "fields": [
   {
@@ -255,15 +254,6 @@
    "options": "User"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Tasks",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fieldname": "section_break_35",
    "fieldtype": "Section Break"
   },
@@ -272,15 +262,6 @@
    "fieldname": "section_break_37",
    "fieldtype": "Section Break",
    "label": "Recurrent Tasks"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Tasks",
-   "print_hide": 1,
-   "read_only": 1
   },
   {
    "fieldname": "task_title",
@@ -349,7 +330,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-05-04 12:46:38.244563",
+ "modified": "2021-05-04 14:40:05.542505",
  "modified_by": "Administrator",
  "module": "IAC Activity Logger",
  "name": "Tasks",
@@ -422,7 +403,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Farm Super User",
+   "role": "Farm Super Admin",
    "share": 1,
    "write": 1
   },
@@ -434,7 +415,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Farm Super User",
+   "role": "Farm Super Admin",
    "share": 1,
    "write": 1
   }
